@@ -29,15 +29,26 @@ Mathis Hofer \
 <a href="mailto:hofer@puzzle.ch">hofer@puzzle.ch</a>
 
 ---
+layout: quote
+class: text-center
+---
+
+# <span style="font-size: 4em">77.8s → 7.5s</span>
+
+10.4x faster VSCode Build with TypeScript 7.0
+
+---
 layout: agenda
 ---
 
 # Agenda
 
-- TODO
+- Act I — Why did Microsoft do this?
+- Act II — What actually changes
+- Act III — Can you use it?
 
 ---
 layout: intro
 ---
 
-# TypeScript 7,<br>a <span class="highlight">10x faster</span> native port!
+# Act I — <span class="highlight">Why</span> did Microsoft do this?
