@@ -1,0 +1,51 @@
+name: Build & deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write # Required for deploying to Pages
+  id-token: write # Required for authentication
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v6
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Read .nvmrc
+        run: echo "NODE_VERSION=$(cat .node-version)" >> $GITHUB_OUTPUT
+        id: nvm
+
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Build 🏭
+        run: |
+          pnpm build --base=/${{ github.event.repository.name }}/
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          # Point this to your build output directory
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
