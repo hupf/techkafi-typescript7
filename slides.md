@@ -295,7 +295,7 @@ VS Code code base, time to first error:
 ```mermaid
 flowchart LR
     vscode[VS Code]
-    editor["Emacs<br>NeoVIM<br>Zed<br>etc."]
+    editor["Emacs<br>Neovim<br>Zed<br>etc."]
     tsls["typescript-language-server / vtsls<br>(unofficial adapter)"]
     tsserver["tsserver<br>(Node.js)"]
 
@@ -316,7 +316,7 @@ flowchart LR
 flowchart TD
     vscode[VS Code]
     emacs[Emacs]
-    vim[NeoVIM]
+    vim[Neovim]
     zed[Zed]
     etc[...]
     tsgo["<code>tsc --lsp --stdio</code><br>(native Go binary)"]
@@ -333,7 +333,7 @@ flowchart TD
 - Fast & reliable
   - **80%** fewer failing language server commands
   - **60%** fewer server crashes
-- tsserver plugins are gone (used by Angular, Svelte, Vue etc.)
+- No replacement for tsserver plugins (used by Angular, Svelte, Vue etc.)
 
 ---
 
@@ -494,7 +494,7 @@ Current architecture with 6.0:
 
 ```mermaid
 flowchart LR
-    editor["VS Code<br>Emacs<br>NeoVIM<br>Zed<br>etc."]
+    editor["VS Code<br>Emacs<br>Neovim<br>Zed<br>etc."]
     ngbuild["ng build"]
 
     subgraph proc["@angular/language-server (ngserver) — one Node.js process"]
