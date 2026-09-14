@@ -71,7 +71,7 @@ layout: intro
 
 - No shared-memory concurrency (single-threaded)
 - Performance penalty (2-3x worse than native code)
-- Memory usage (GC pressure from millions of short-lived objects)
+- Memory ceiling (V8 heap limit → "JavaScript heap out of memory" on big monorepos)
 
 → It scaled with the codebases — until it didn't.
 
@@ -188,7 +188,7 @@ layout: center
 
 ---
 
-# 16 months, exactly as announced
+# The past 16 months
 
 |              |                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------ |
@@ -389,33 +389,24 @@ flowchart LR
 
 # New tsconfig.json defaults in 6.0
 
-<div style="font-size: 0.8em">
-
-| Option                         | New default                  |
-| ------------------------------ | ---------------------------- |
-| `strict`                       | `true`                       |
-| `module`                       | `esnext`                     |
-| `target`                       | latest stable ES version     |
-| `types`                        | `[]` — was `["*"]`           |
-| `rootDir`                      | `./` — no longer inferred    |
-| `stableTypeOrdering`           | `true`, cannot be turned off |
-| `noUncheckedSideEffectImports` | `true`                       |
-| `libReplacement`               | `false`                      |
-
-</div>
+- `strict: true`
+- `module: esnext`
+- `target: latest` (latest stable ES version)
+- `types: []` **was `["*"]`, will no more automatically include `@types/*` packages in `node_modules`**
+- `rootDir: "./"` (no longer inferred)
+- `stableTypeOrdering: true` (cannot be turned off)
 
 ---
 
 # Deprecated in 6.0, removed in 7.0
 
-- `target: es5` and `downlevelIteration`
-- `module`: `amd`, `umd`, `systemjs`, `none`
-- `moduleResolution`: `node`, `node10`, `classic`
+- Legacy ECMAScript targets (ECMAScript 5)
+- Legacy module targets (System, AMD, UMD)
+- Legacy module resolution modes
 - `baseUrl`
-- `esModuleInterop` / `allowSyntheticDefaultImports` can no longer be `false`
-- `alwaysStrict` can no longer be `false`
+- ...and a few more
 
-→ Almost all of it is the legacy module story; fine if you're on ESM with bundler resolution.
+→ You're fine if on ESM with bundler resolution.
 
 ---
 
@@ -539,7 +530,7 @@ Source: [Angular Roadmap](https://angular.dev/roadmap#developer-velocity)
 
 ---
 
-# The road to 7.1 as planned
+# The road ahead to 7.1
 
 |                |                                                               |
 | -------------- | ------------------------------------------------------------- |
@@ -559,16 +550,34 @@ layout: intro
 layout: center
 ---
 
-# Three things to take away
+<div style="font-size: 2em">
 
-1. **Same language, different engine**
+1. **Same language, different engine** \
    No new syntax, no new types. A port, deliberately.
 
-2. **The blocker is the missing API — and it has a date**
+</div>
+
+---
+layout: center
+---
+
+<div style="font-size: 2em">
+
+2. **The missing IPC API is a blocker, but it has a date** \
    7.1 stable on 24 Nov 2026.
 
-3. **Your migration work is the 6.0 work**
+</div>
+
+---
+layout: center
+---
+
+<div style="font-size: 2em">
+
+3. **Your migration work is the 6.0 work** \
    Do it now, get 7.0 for free.
+
+</div>
 
 ---
 
