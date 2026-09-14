@@ -5,12 +5,10 @@ theme: "@puzzleitc/slidev-theme-puzzle"
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Tech Kafi TypeScript 7
+title: "TypeScript 7 – A Fast, Native Port"
 info: |
-  ## Tech Kafi TypeScript 7
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  ## TypeScript 7 – A Fast, Native Port
+  Puzzle Tech Kafi, 17.09.2026
 # https://sli.dev/features/drawing
 drawings:
   persist: false
@@ -23,7 +21,7 @@ duration: 35min
 layout: cover
 ---
 
-# <span class="highlight">TypeScript 7</span><br>A Fast & Native Port
+# <span class="highlight">TypeScript 7</span><br>A Fast, Native Port
 
 Puzzle Tech Kafi, 17.09.2026 \
 Mathis Hofer \
@@ -37,7 +35,7 @@ class: text-center
 # <span style="font-size: 3em">125.7s → 10.6s</span>
 
 VS Code (2.3M LOC) built with TypeScript 7.0: \
-11.9x faster, -18% less memory usage ([source](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/))
+11.9x faster, 18% less memory ([source](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/))
 
 ---
 layout: agenda
@@ -60,10 +58,10 @@ layout: intro
 
 # A self-hosted compiler
 
-`tsc` has always been TypeScript, compiling TypeScript on Node.js (since development started in 2010).
+Since development started in 2010, `tsc` has always been **TypeScript, compiling TypeScript on Node.js**.
 
-- Eat you own dogfood → part of ecosystem
-- Runs everywhere
+- Eat your own dogfood → part of own ecosystem
+- Runs everywhere, even in browser
 
 ---
 
@@ -87,7 +85,7 @@ What people mean when they say "TypeScript is slow":
 
 <div style="font-size: 0.5em">
 
-<sup>*</sup> VSCode code base with TS6
+<sup>*</sup> VS Code code base with TS6
 
 </div>
 
@@ -127,7 +125,7 @@ is the hard part, and it is the entire value of TypeScript.
 
 **Port**
 
-- managable effort
+- manageable effort
 - same structure
 - same logic
 - same output
@@ -140,7 +138,7 @@ is the hard part, and it is the entire value of TypeScript.
 
 ---
 
-# TypeScript 7.0
+# The plan: TypeScript 7.0
 
 - No new type-system features
 - No new syntax
@@ -180,9 +178,11 @@ layout: center
 
 # Direct port from TypeScript to Go
 
-<Transform :scale="0.9" origin="top center">
+<Transform :scale="0.8" origin="top center">
 
 ![Go vs. TypeScript](./images/ts7-go-vs-ts.png)
+
+→ Converter they used: [github.com/jakebailey/ts-to-go](https://github.com/jakebailey/ts-to-go)
 
 </Transform>
 
@@ -235,7 +235,7 @@ layout: intro
 
 ---
 
-# Where the speed comes from?
+# Where does speed come from?
 
 **1. Native code**
 
@@ -306,7 +306,7 @@ flowchart LR
 
 - No official LSP support
 - VS Code: Talks to tsserver directly (hardcoded special case)
-- Open issue since 2016
+- First requested in issue 2016
 
 ---
 
@@ -390,8 +390,8 @@ flowchart LR
 # New tsconfig.json defaults in 6.0
 
 - `strict: true`
-- `module: esnext`
-- `target: latest` (latest stable ES version)
+- `module: "esnext"`
+- `target` is latest stable ES version
 - `types: []` **was `["*"]`, will no more automatically include `@types/*` packages in `node_modules`**
 - `rootDir: "./"` (no longer inferred)
 - `stableTypeOrdering: true` (cannot be turned off)
@@ -403,8 +403,7 @@ flowchart LR
 - Legacy ECMAScript targets (ECMAScript 5)
 - Legacy module targets (System, AMD, UMD)
 - Legacy module resolution modes
-- `baseUrl`
-- ...and a few more
+- ...and some more
 
 → You're fine if on ESM with bundler resolution.
 
@@ -462,16 +461,15 @@ layout: intro
 
 <div style="font-size: 0.8em">
 
-| Tool                    | TS 7.0? | Notes                                                                        |
-| ----------------------- | ------- | ---------------------------------------------------------------------------- |
-| `tsc` in CI / libraries | ✅      | Just bump the dependency                                                     |
-| Editors via LSP         | ✅      | Use new native language service, no adapter needed                           |
-| **Next.js**             | ✅      | 16.3+, runs your local `tsc`                                                 |
-| Vue/Volar               | ⚠️      | `vue-tsc` installs, but checks on the TS 6 API; editor integration needs 6.0 |
-| **Angular**             | ❌      | On roadmap, no date                                                          |
-| **typescript-eslint**   | ❌      | Work started, no date                                                        |
-| ESLint type-aware rules | ❌      | Blocked on typescript-eslint                                                 |
-| ts-jest, ts-loader etc. | ❌      | All need to adapt to 7.1 IPC API                                             |
+| Tool                    | TS 7.0? | Notes                                              |
+| ----------------------- | ------- | -------------------------------------------------- |
+| `tsc` in CI / libraries | ✅      | Just bump the dependency                           |
+| Editors via LSP         | ✅      | Use new native language service, no adapter needed |
+| **Next.js**             | ✅      | 16.3+, runs your local `tsc`                       |
+| **Angular**             | ❌      | On roadmap, no date                                |
+| **typescript-eslint**   | ❌      | Work started, no date                              |
+| ESLint type-aware rules | ❌      | Blocked on typescript-eslint                       |
+| ts-jest, ts-loader etc. | ❌      | All need to adapt to 7.1 IPC API                   |
 
 </div>
 
@@ -563,7 +561,7 @@ layout: center
 
 <div style="font-size: 2em">
 
-2. **The missing IPC API is a blocker, but it has a date** \
+2. **The missing API is a blocker, but it has a date** \
    7.1 stable on 24 Nov 2026.
 
 </div>
@@ -585,14 +583,14 @@ layout: center
 
 Articles:
 
-- [A 10x Faster TypeScript](https://devblogs.microsoft.com/typescript/typescript-native-port/), May 2025 (official announcment)
+- [A 10x Faster TypeScript](https://devblogs.microsoft.com/typescript/typescript-native-port/), March 2025 (official announcement)
 - [Announcing TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/), July 2026 (release post)
 
 Videos:
 
-- [ Creator of TypeScript: 10x Faster Typescript, Why AI Won't Replace SWEs](https://www.youtube.com/watch?v=cywK3XYYJ2o), August 2026 (interview with Anders Hejlsberg)
+- [Creator of TypeScript: 10x Faster Typescript, Why AI Won't Replace SWEs](https://www.youtube.com/watch?v=cywK3XYYJ2o), August 2026 (interview with Anders Hejlsberg)
 - [A 10x Faster TypeScript with Anders Hejlsberg](https://www.youtube.com/watch?v=UJfF3-13aFo), May 2025 (lengthy technical talk)
-- [ A 10x faster TypeScript ](https://www.youtube.com/watch?v=pNlq-EVld70) (short announcement & demo)
+- [A 10x faster TypeScript ](https://www.youtube.com/watch?v=pNlq-EVld70) (short announcement & demo)
 
 ---
 layout: end
