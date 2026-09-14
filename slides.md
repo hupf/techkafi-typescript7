@@ -23,8 +23,9 @@ duration: 35min
 layout: cover
 ---
 
-# Tech Kafi<br><span class="highlight">TypeScript 7</span>
+# <span class="highlight">TypeScript 7</span><br>A Fast & Native Port
 
+Puzzle Tech Kafi, 17.09.2026 \
 Mathis Hofer \
 <a href="mailto:hofer@puzzle.ch">hofer@puzzle.ch</a>
 
@@ -33,9 +34,10 @@ layout: quote
 class: text-center
 ---
 
-# <span style="font-size: 4em">77.8s → 7.5s</span>
+# <span style="font-size: 3.5em">125.7s → 10.6s</span>
 
-10.4x faster VSCode Build with TypeScript 7.0
+VSCode (1.5M LOC) built with TypeScript 7.0: \
+11.9x faster, -18% less memory usage ([Source](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/))
 
 ---
 layout: agenda
