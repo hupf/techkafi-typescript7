@@ -556,6 +556,8 @@ layout: intro
 # <span class="highlight">Three things</span> to take away
 
 ---
+layout: center
+---
 
 # Three things to take away
 
