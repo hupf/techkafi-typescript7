@@ -114,7 +114,7 @@ is the hard part, and it is the entire value of TypeScript.
 
 **Rewrite**
 
-- huge effort
+- huge effort (multiple years)
 - new structure
 - new logic
 - different output
@@ -125,7 +125,7 @@ is the hard part, and it is the entire value of TypeScript.
 
 **Port**
 
-- manageable effort
+- manageable effort (multiple months)
 - same structure
 - same logic
 - same output
@@ -154,7 +154,8 @@ The existing compiler is closures, higher-order functions and **cyclic graphs**,
 all **garbage-collected**.
 
 - **Go** maps onto that almost 1:1 — GC, structural types, first-class functions, real concurrency
-- **Rust's** ownership model would have forced a redesign of exactly those data structures
+- **C#** is object oriented which does not match the compiler's code style (no classes)
+- **Rust's** ownership model would have forced a redesign of the cyclic data structures
 
 → This is not a dunk on Rust. Different tool, different job.
 
