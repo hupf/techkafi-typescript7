@@ -220,7 +220,7 @@ layout: intro
 
 ---
 
-# The numbers
+# Waaay faster builds 🔥
 
 <CompareBars
   :rows="[
@@ -235,6 +235,21 @@ layout: intro
 → 8–12x on full builds, 6–26% less memory
 
 ---
+layout: center
+class: text-center
+---
+
+# But the editor is where you feel it
+
+VS Code code base , time to first error:
+
+<div style="font-size: 2em; margin: 1rem 0">
+
+**17.5s → 1.3s** (13x)
+
+</div>
+
+---
 
 # Where does speed come from?
 
@@ -243,10 +258,12 @@ layout: intro
 - No JIT warm-up, no interpreter, no Node.js startup
 - Compact memory layout → far less GC pressure
 
-**2. Shared-memory concurrency**
+**2. Shared-memory concurrency**<sup>*</sup>
 
 - Parsing and checking spread across all your cores
 - Simply not available to the JS implementation
+
+<small><sup>*</sup>Uses 4 type-checking workers per default, but can be configured with `tsc --checkers 8`</small>
 
 <!--
 Parsing source files and building AST in memory is completely parallelizable.
@@ -259,35 +276,6 @@ layout: center
 # Concurrency gains & LSP improvements
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/OytpXXeNmTQ?si=SfU3Bhpn6_toTfiM&amp;start=387" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
----
-layout: center
-class: text-center
----
-
-# But the editor is where you feel it
-
-VS Code code base, time to first error:
-
-<div style="font-size: 2em; margin: 1rem 0">
-
-**17.5s → 1.3s** (13x)
-
-</div>
-
----
-
-# Real teams, real numbers
-
-**Slack**
-
-- CI type-checking **7.5 min → 1.25 min**
-- 40% of merge queue time eliminated
-- Local development previously "almost unusable"
-
-**Canva**
-
-- Time to first error in the editor **58s → 4.8s**
 
 ---
 
@@ -307,7 +295,7 @@ flowchart LR
 
 - No official LSP support
 - VS Code: Talks to tsserver directly (hardcoded special case)
-- First requested in issue 2016
+- LSP was first requested in 2016
 
 ---
 
@@ -330,7 +318,7 @@ flowchart TD
 ```
 
 - Official LSP support → every editor is now first-class → feature parity
-- Adapter/runtime are gone → one native binary
+- LSP adapter/tsserver are gone → one native binary
 - Fast & reliable
   - **80%** fewer failing language server commands
   - **60%** fewer server crashes
@@ -407,16 +395,6 @@ flowchart LR
 - ...and some more
 
 → You're fine if on ESM with bundler resolution.
-
----
-
-# What does _not_ change
-
-- The type system
-- The syntax
-- The errors you get
-
-→ Same language. Different engine.
 
 ---
 layout: intro
